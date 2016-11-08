@@ -1,0 +1,35 @@
+mixin product-input(text, count, key)
+    - var ccount = count || 0
+    - var newText = text[0].toUpperCase() + text.slice(1)
+    | #{newText}
+    br
+    input(min="0", value=ccount, type="number", name=key)
+    br
+
+html
+    head
+        link(rel="stylesheet" href="http://www.w3schools.com/lib/w3.css")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css")
+        title Discount
+    body
+    header(class="w3-content w3-padding-xlarge w3-margin-top")
+        h1
+            b
+                Discount Discount Computer
+    div(class="w3-content w3-padding-xlarge w3-margin-top")
+        form(formmethod="get")
+            each it in products
+                +product-input(it.name, it.count, it.id)
+            br
+            input(type="submit" value="Submit")
+    div(class="w3-content w3-padding-xlarge w3-margin-top")
+        |This costs are: + #{prices.full.toFixed(2)} Ft
+        br
+        |This discount is: - #{prices.discount.toFixed(2)} Ft #{prices.discountName}
+        br
+        |This costs with discount: #{(prices.full - prices.discount).toFixed(2)} Ft
+        br
+        |This is #{prices.inEuro.toFixed(2)} EUR
+        br
+        |This is #{prices.inPound.toFixed(2)} Pound
