@@ -1,7 +1,7 @@
-mixin product-input(text, count, key)
+mixin product-input(text, count, key, price)
     - var ccount = count || 0
     - var newText = text[0].toUpperCase() + text.slice(1)
-    | #{newText}
+    | #{newText} #{price} Ft/Each
     br
     input(min="0", value=ccount, type="number", name=key)
     br
@@ -20,7 +20,7 @@ html
     div(class="w3-content w3-padding-xlarge w3-margin-top")
         form(formmethod="get")
             each it in products
-                +product-input(it.name, it.count, it.id)
+                +product-input(it.name, it.count, it.id, it.price)
             br
             input(type="submit" value="Submit")
     div(class="w3-content w3-padding-xlarge w3-margin-top")

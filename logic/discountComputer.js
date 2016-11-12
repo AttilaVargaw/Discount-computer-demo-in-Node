@@ -49,7 +49,7 @@ function MegaPack(basket) {
         var products = basket.getProuducts();
         for (var it in products) {
             item = products[it];
-            if (item.isMega && item.count > 0) {
+            if (item.count > 0 && item.isMega) {
                 var count = item.count;
                 var megapack = Math.floor(count / 12);
 

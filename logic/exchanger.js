@@ -2,8 +2,8 @@ exports = module.exports;
 
 var Mnb = require("./MnbWebservice").MnbWebservice;
 
-exports.Exchanger = function (ft) {
-    var webservice = new Mnb();
+exports.Exchanger = function (ft, mnbWebservice) {
+    var webservice = mnbWebservice;
 
     this.asEuro = function () {
         return new Promise(function (resolve, reject) {

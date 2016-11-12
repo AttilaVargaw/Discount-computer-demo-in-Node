@@ -1,11 +1,11 @@
 var exports = module.exports;
 
 var dataBase = require("./../services/dataBase");
-
 var Basket = require("./../logic/basket").Basket;
 var DiscountComputer = require("./../logic/discountComputer").DiscountComputer;
 var PriceComputer = require("./../logic/PriceComputer").PriceComputer;
 var Exchanger = require("./../logic/exchanger").Exchanger;
+var Mnb = require("./../logic/MnbWebservice").MnbWebservice;
 
 exports.Render = function (req, res) {
     var products = dataBase.getProducts();
@@ -27,7 +27,7 @@ exports.Render = function (req, res) {
     };
 
     var payPrice = priceComputer.price() - discountComputer.discount();
-    var exchanger = new Exchanger(payPrice);
+    var exchanger = new Exchanger(payPrice, new Mnb());
 
     Promise.all([
         exchanger.asEuro(),
